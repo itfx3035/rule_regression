@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "regression-rules"
+version = "0.1.0"
+description = "Two-stage interpretable region + rule extraction for regression, in plain text"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.22"]
+license = { text = "MIT" }
+license-files = ["LICENSE"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["regression_rules*"]
+
+[tool.pytest.ini_options]
+testpaths = ["src/regression_rules", "tests"]
+pythonpath = ["src"]
+addopts = "--doctest-modules"
+
+[tool.setuptools.package-data]
+# the shipped 300-row energy fixture, so `import regression_rules` has a bundled example
+regression_rules = ["_data/*.csv"]
